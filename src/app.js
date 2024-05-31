@@ -10,15 +10,17 @@ app.use(express.json());
 
 // Write GET endpoint for sending all the products to client here
 // Endpoint - /api/v1/products
-app.get("/api/v1/products", (res, req)=>{
+app.get("/api/v1/products", (req, res)=>{
     if(products && products.length){
-        res.statusCode = 200
+        res.statusCode = 200;
 
         const payload = {
             status: "success", 
             message: "Product fetched successfully",
-            data: {},
-        }
+            data: {
+                payload,
+            },
+        };
         res.json(payload)
     }else{
         res.statusCode = 400
